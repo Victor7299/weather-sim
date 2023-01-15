@@ -72,4 +72,5 @@ if __name__ == "__main__":
     feb_daily_avg = feb_daily_avg.set_index("days")
     print(feb_daily_avg)
     plt.plot(feb_daily_avg["avg"])
+    plt.tight_layout()
     plt.show()
