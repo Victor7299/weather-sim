@@ -16,6 +16,7 @@ def get_df(
 ):
     if not file_path.exists():
         raise FileNotFoundError(f"File {file_path.name} doens't exists")
+    
     if columns is None:
         columns = [1, 3]
 
