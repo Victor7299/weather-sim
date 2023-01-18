@@ -25,7 +25,7 @@ def year_by_monthly_avg(year_df):
 
 
 if __name__ == "__main__":
-    nox_18 = Path("/home/fernando/Projects/weather-sim/simulator/concatenated_data/nox/nox_18.csv")
+    nox_18 = Path("simulator/concatenated_data/nox/nox_18.csv")
     
     # df = get_df(so2_18,names=["Date", "SO2"], only_gt_zero=True)
     nox_df = get_df(nox_18, [1, 3, 5, 7], ["Date", "NO", "NOx", "NO2"], only_gt_zero=True)
