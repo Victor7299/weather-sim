@@ -13,6 +13,7 @@ def get_df(
     columns: list = None,
     names: list = None,
     delimiter: str = ",",
+    only_gt_zero: bool = False,
 ):
     if not file_path.exists():
         raise FileNotFoundError(f"File {file_path.name} doens't exists")
@@ -22,6 +23,9 @@ def get_df(
 
     if names is None:
         names = ["Date", "Concentration"]
+
+    if len(columns) != len(names):
+        raise Exception("columns and names must have the same size")
 
     file = pd.read_csv(
         file_path,
@@ -34,4 +38,15 @@ def get_df(
     df = pd.DataFrame(file)
     df["Date"] = pd.to_datetime(df["Date"], format="%Y/%m/%d")
     df.set_index("Date", inplace=True)
+
+    if only_gt_zero:
+        df = df[df > 0]
+
     return df
+
+if __name__ == "__main__":
+    data = Path(__file__).parent / "concatenated_data"
+
+    nox_18 = data / "nox" / "nox_18.csv"
+    df = get_df(nox_18, [1,3, 5, 7], ["Date", "NO", "NOx", "NO2"])
+    print(df.index[df.index > "2018/12/30"])
