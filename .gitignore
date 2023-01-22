@@ -172,3 +172,4 @@ poetry.toml
 
 **/raw_data/
 **/concatenated_data/
+**/final_data/
